@@ -1,0 +1,110 @@
+<odoo>
+
+    <record id="hr_payslip_stage_view_form" model="ir.ui.view">
+      <field name="name">hr.payslip.stage.form</field>
+      <field name="model">hr.payslip.stage</field>
+      <field name="arch" type="xml">
+        <form string="Payslip Approve Stage">
+          <sheet>
+            <group>
+              <field name="name"/>
+              <field name="sequence"/>
+              <field name="description"/>
+              <field name="user_id" widget="many2many_tags"/>
+            </group>
+            <group>
+                <field name="compute_sheet"/>
+                <field name="confirm"/>
+                <field name="cancel"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record id="hr_payslip_stage_view_tree" model="ir.ui.view">
+        <field name="name">hr.payslip.stage.tree</field>
+        <field name="model">hr.payslip.stage</field>
+        <field name="arch" type="xml">
+          <tree>
+              <field name="name"/>
+              <field name="sequence"/>
+              <field name="description"/>
+              <field name="user_id"/>
+              <field name="compute_sheet"/>
+              <field name="confirm"/>
+              <field name="cancel"/>
+          </tree>
+        </field>
+    </record>
+
+    <record id="hr_payslip_stage_action_form" model="ir.actions.act_window">
+      <field name="name">Payslip Approve Stage</field>
+      <field name="res_model">hr.payslip.stage</field>
+      <field name="view_mode">tree,form</field>
+      <field name="help" type="html">
+        <p class="oe_view_nocontent_create">
+        </p>
+        <p>
+        </p>
+      </field>
+    </record>
+
+    <menuitem id="hr_payslip_stage_menu" name="Payslip Approval" parent="hr_payroll.menu_hr_payroll_configuration" action="hr_payslip_stage_action_form" sequence="15"/>
+
+
+<!--    Batch -->
+
+    <record id="hr_payslip_run_stage_view_form" model="ir.ui.view">
+      <field name="name">hr.payslip.run.stage.form</field>
+      <field name="model">hr.payslip.run.stage</field>
+      <field name="arch" type="xml">
+        <form string="Payslip Batch Approve Stage">
+          <sheet>
+            <group>
+              <field name="name"/>
+              <field name="sequence"/>
+              <field name="description"/>
+              <field name="user_id" widget="many2many_tags"/>
+            </group>
+            <group>
+                <field name="compute_sheet"/>
+                <field name="confirm"/>
+                <field name="close"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record id="hr_payslip_stage_run_view_tree" model="ir.ui.view">
+        <field name="name">hr.payslip.run.stage.tree</field>
+        <field name="model">hr.payslip.run.stage</field>
+        <field name="arch" type="xml">
+          <tree>
+              <field name="name"/>
+              <field name="sequence"/>
+              <field name="description"/>
+              <field name="user_id"/>
+              <field name="compute_sheet"/>
+              <field name="confirm"/>
+              <field name="close"/>
+          </tree>
+        </field>
+    </record>
+
+    <record id="hr_payslip_run_stage_action_form" model="ir.actions.act_window">
+      <field name="name">Payslip Batch Approve Stage</field>
+      <field name="res_model">hr.payslip.run.stage</field>
+      <field name="view_mode">tree,form</field>
+      <field name="help" type="html">
+        <p class="oe_view_nocontent_create">
+        </p>
+        <p>
+        </p>
+      </field>
+    </record>
+
+    <menuitem id="hr_payslip_run_stage_menu" name="Payslip Batch Approval" parent="hr_payroll.menu_hr_payroll_configuration" action="hr_payslip_run_stage_action_form" sequence="16"/>
+
+</odoo>

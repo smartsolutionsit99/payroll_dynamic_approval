@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_payroll_dynamic_approval_payroll_dynamic_approval,payroll_dynamic_approval.payroll_dynamic_approval,model_payroll_dynamic_approval_payroll_dynamic_approval,,1,0,0,0
