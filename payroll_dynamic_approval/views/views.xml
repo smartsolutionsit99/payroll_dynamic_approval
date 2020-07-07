@@ -16,6 +16,7 @@
                 <field name="compute_sheet"/>
                 <field name="confirm"/>
                 <field name="cancel"/>
+                <field name="refund"/>
             </group>
           </sheet>
         </form>
@@ -34,6 +35,7 @@
               <field name="compute_sheet"/>
               <field name="confirm"/>
               <field name="cancel"/>
+              <field name="refund"/>
           </tree>
         </field>
     </record>
@@ -48,6 +50,30 @@
         <p>
         </p>
       </field>
+    </record>
+
+    <record id="inherit_view_hr_payslip_form" model="ir.ui.view">
+        <field name="name">hr.payslip.form</field>
+        <field name="model">hr.payslip</field>
+        <field name="inherit_id" ref="hr_payroll.view_hr_payslip_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="replace">
+                <header>
+<!--                    <button string="Set to Draft" name="action_payslip_draft" type="object" states="cancel"/>-->
+                    <button string="Confirm" name="action_payslip_done" type="object" attrs="{'invisible':[('st_confirm','=',False)]}" class="oe_highlight"/>
+                    <button string="Refund" name="refund_sheet" attrs="{'invisible':[('st_refund','=',False)]}" type="object"/>
+                    <button string="Compute Sheet" name="compute_sheet" attrs="{'invisible':[('st_compute_sheet','=',False)]}" type="object" states="draft" class="oe_highlight"/>
+                    <button string="Cancel Payslip" name="action_payslip_cancel" attrs="{'invisible':[('st_cancel','=',False)]}" type="object" states="draft,hr_check,confirm,verify"/>
+                    <field name="stage_id" widget="statusbar" />
+                    <field name="state" invisible="1"/>
+
+                    <field name="st_confirm" invisible="1"/>
+                    <field name="st_refund" invisible="1"/>
+                    <field name="st_compute_sheet" invisible="1"/>
+                    <field name="st_cancel" invisible="1"/>
+                </header>
+            </xpath>
+        </field>
     </record>
 
     <menuitem id="hr_payslip_stage_menu" name="Payslip Approval" parent="hr_payroll.menu_hr_payroll_configuration" action="hr_payslip_stage_action_form" sequence="15"/>
@@ -68,8 +94,7 @@
               <field name="user_id" widget="many2many_tags"/>
             </group>
             <group>
-                <field name="compute_sheet"/>
-                <field name="confirm"/>
+                <field name="generate_payslip"/>
                 <field name="close"/>
             </group>
           </sheet>
@@ -86,8 +111,7 @@
               <field name="sequence"/>
               <field name="description"/>
               <field name="user_id"/>
-              <field name="compute_sheet"/>
-              <field name="confirm"/>
+              <field name="generate_payslip"/>
               <field name="close"/>
           </tree>
         </field>
